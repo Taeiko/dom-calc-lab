@@ -4,6 +4,7 @@ const calculator = document.querySelector('.calculator')
 const buttonNumElm = document.querySelectorAll('.number')
 const operatorClkElm = document.querySelectorAll('.operator')
 const displayElm = document.querySelector('.display')
+const equalsElm = document.querySelector('.equals')
 console.log()
 //---------------------------------VARIABLES---------------------//
 let currentInput = ""
@@ -16,55 +17,81 @@ let display = ""
 function init() {
 }
 
-function clickHandler(){
+function clickHandler() {
 }
 //event listeners
-buttonNumElm.forEach((oneElement)=> {
+buttonNumElm.forEach((oneElement) => {
     oneElement.addEventListener('click', (event) => {
-    console.log(oneElement.textContent)
-        
-   
-    if(numOne && operator){
-    numTwo = event.target.textContent
-    }
-    else if(numOne && !operator ){
-        numOne+= event.target.textContent
+        console.log(oneElement.textContent)
 
-    }
-     else { 
-        numOne = event.target.textContent
-    }
-    // console.log(event.target.innerText)
-    console.log("num1 ", numOne)
-    console.log("operator ", operator)
-    console.log("num2 ", numTwo)
 
+        if (numOne && operator) {
+            numTwo = event.target.textContent
+        }
+        else if (numOne && !operator) {
+            numOne += event.target.textContent
+
+        }
+        else {
+            numOne = event.target.textContent
+        }
+        if (operator) {
+            displayElm.textContent = numOne + " " + operator + " " + numTwo
+        } else {
+            displayElm.textContent = numOne
+        }
+        // console.log(event.target.innerText)
+        console.log("num1 ", numOne)
+        console.log("operator ", operator)
+        console.log("num2 ", numTwo)
+
+    })
 })
- })
 
 
 
-operatorClkElm.forEach((oneOperation)=>{
-    oneOperation.addEventListener('click',(event)=>{
-    console.log(oneOperation.textContent)
-    
-    
-    if (numOne){
-    operator = event.target.textContent
+operatorClkElm.forEach((oneOperation) => {
+    oneOperation.addEventListener('click', (event) => {
+        console.log(oneOperation.textContent)
 
-    }
-    console.log(operator)
 
-     if(event.target.textContent === "="){
-        console.log("=======")
-    }
-       
+        if (numOne) {
+            operator = event.target.textContent
+
+        }
+        console.log(operator)
+
+        if (event.target.textContent === "=") {
+            console.log("=======")
+        }
+
+        if (operator === "C"){
+            numOne = ""
+            numTwo = ""
+            operator = ""
+            displayElm.textContent= ""
+            return
+        }
     })
 
 
-   
 })
 
+equalsElm.addEventListener('click', (event) => {
+    let result
+    if (operator === "+" ){
+         result = Number(numOne) + Number(numTwo)
+
+    } else if (operator === "-"){
+       result= Number(numOne) - Number(numTwo)
+    } else if (operator === "*"){
+          result=Number(numOne) * Number(numTwo)
+    } else if (operator === "/") {
+         result= Number(numOne) / Number(numTwo)
+    }
+    console.log(result)
+    displayElm.textContent= result
+})
 
 
 document.addEventListener('DOMContentLoaded', init)
