@@ -24,7 +24,6 @@ buttonNumElm.forEach((oneElement) => {
     oneElement.addEventListener('click', (event) => {
         console.log(oneElement.textContent)
 
-
         if (numOne && operator) {
             numTwo = event.target.textContent
         }
@@ -54,22 +53,21 @@ operatorClkElm.forEach((oneOperation) => {
     oneOperation.addEventListener('click', (event) => {
         console.log(oneOperation.textContent)
 
-
         if (numOne) {
             operator = event.target.textContent
-
+        
         }
         console.log(operator)
-
+        
         if (event.target.textContent === "=") {
             console.log("=======")
         }
-
-        if (operator === "C"){
+        
+        if (operator === "C") {
             numOne = ""
             numTwo = ""
             operator = ""
-            displayElm.textContent= ""
+            displayElm.textContent = ""
             return
         }
     })
@@ -79,19 +77,20 @@ operatorClkElm.forEach((oneOperation) => {
 
 equalsElm.addEventListener('click', (event) => {
     let result
-    if (operator === "+" ){
-         result = Number(numOne) + Number(numTwo)
+    if (operator === "+") {
+        result = Number(numOne) + Number(numTwo)
 
-    } else if (operator === "-"){
-       result= Number(numOne) - Number(numTwo)
-    } else if (operator === "*"){
-          result=Number(numOne) * Number(numTwo)
+    } else if (operator === "-") {
+        result = Number(numOne) - Number(numTwo)
+    } else if (operator === "*") {
+        result = Number(numOne) * Number(numTwo)
     } else if (operator === "/") {
-         result= Number(numOne) / Number(numTwo)
+        result = Number(numOne) / Number(numTwo)
     }
     console.log(result)
-    displayElm.textContent= result
+    displayElm.textContent = result
 })
+
 
 
 document.addEventListener('DOMContentLoaded', init)
